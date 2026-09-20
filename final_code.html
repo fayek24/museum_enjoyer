@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="x-icon" href="ME.png">
+  <title>Museum Enjoyer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Κεφαλίδα της ιστοσελίδας -->
+  <header>
+    <div class="header-container">
+      <h1>🏛️ Museum Enjoyer</h1>
+      
+      <!-- Κουμπιά -->
+      <div class="user-box">
+        <button id="login-btn" onclick="openLoginModal()">Σύνδεση/Εγγραφή</button>
+        <button id="my-tickets-btn" class="hidden orange-btn" onclick="openMyTicketsModal()">🎟️Τα Εισιτήριά μου</button>
+        <button id="upload-btn" class="hidden" onclick="openUploadModal()">📷Νέα Ανάρτηση</button>
+        <button id="chat-btn" onclick="toggleChat()">💬Live Chat Χρηστών</button>
+        <button id="logout-btn" class="hidden btn-danger" onclick="doLogout()">Αποσύνδεση</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Λίστα με τα Μουσεία -->
+    <section class="museums-list">
+
+      <!-- Μουσείο 1 -->
+      <div class="museum-card" id="card-acropolis">
+        <img src="ΕΙΚΟΝΕΣ\istorekakropolm.jpg" alt="Μουσείο Ακρόπολης" class="museum-main-img">
+
+        <div class="museum-info">
+          <h2>Μουσείο Ακρόπολης</h2>
+          <p class="city-tag">📍Διονυσίου Αρεοπαγίτου 15, Αθήνα </p>
+          
+          <div class="action-buttons">
+            <button class="buy-ticket-btn" onclick="openTicketModal('Μουσείο Ακρόπολης', 15, 10)">🎫Έκδοση Εισιτηρίου</button>
+            <button class="info-btn" onclick="toggleInfo('info-acropolis', 'price-acropolis')">ℹ️Πληροφορίες</button>
+          </div>
+
+          <div id="info-acropolis" class="info-box hidden">
+            <p id="text-acropolis">
+              Το Μουσείο Ακρόπολης είναι ένα από τα σημαντικότερα μουσεία στον κόσμο. 
+              Φιλοξενεί ευρήματα από τον ιερό βράχο της Ακρόπολης που καλύπτουν την περίοδο από την Μυκηναϊκή εποχή έως την Παλαιοχριστιανική Αθήνα.
+              Ώρες λειτουργίας: 09:00 - 20:00 καθημερινά
+            </p>
+          </div>
+
+          <p id="price-acropolis" class="price-info"><b>Τιμή:</b> 15€ (Κανονικό) / 10€ (Φοιτητικό)</p>
+        </div>
+
+        <div class="posts-container">
+          <h3>Αναρτήσεις Επισκεπτών:</h3>
+          <div class="photos-grid" id="grid-acropolis">
+            <p class="no-posts">Δεν υπάρχουν ακόμη αναρτήσεις.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Μουσείο 2 -->
+      <div class="museum-card" id="card-byzantine">
+        <img src="ΕΙΚΟΝΕΣ\ΒΥΖΑΝΤΙΝΟ ΚΑΙ ΧΡΙΣΤΙΑΝΙΚΟ ΜΟΥΣΕΙΟ.jpg" alt=Βυζαντινό και Χριστιανικό Μουσείο" class="museum-main-img">
+
+        <div class="museum-info">
+          <h2>Βυζαντινό και Χριστιανικό Μουσείο</h2>
+          <p class="city-tag">📍Λεωφ. Βασιλίσσης Σοφίας 22, Αθήνα</p>
+
+          <div class="action-buttons">
+            <button class="buy-ticket-btn" onclick="openTicketModal('Βυζαντινό και Χριστιανικό Μουσείο', 8, 4)">🎟️ Έκδοση Εισιτηρίου</button>
+            <button class="info-btn" onclick="toggleInfo('info-byzantine', 'price-byzantine')">ℹ️ Πληροφορίες</button>
+          </div>
+
+          <div id="info-byzantine" class="info-box hidden">
+            <p id="text-byzantine">
+              Το Βυζαντινό και Χριστιανικό Μουσείο ιδρύθηκε το 1914 στην Αθήνα και περιλαμβάνει πάνω από 30.000 γλυπτά,
+              εικόνες, τοιχογραφίες, ψηφιδωτά, χειρόγραφα, υφάσματα και μικροτεχνία από τον 3ο αιώνα και μετά.
+              Ώρες Λειτουργίας: Δευτέρα 8:30 - 15:30, Τρίτη Κλειστά, Τετάρτη 8:30 - 15:30, Πέμπτη 8:30 - 15:30, 
+              Παρασκευή 8:30 - 15:30, Σάββατο 8:30 - 15:30, Κυριακή 8:30 - 15:30             
+            </p>
+          </div>
+
+          <p id="price-byzantine" class="price-info"><b>Τιμή:</b> 8€ (Κανονικό) / 4€ (Φοιτητικό)</p>
+        </div>
+
+        <div class="posts-container">
+          <h3>Αναρτήσεις Επισκεπτών:</h3>
+          <div class="photos-grid" id="grid-byzantine">
+            <p class="no-posts">Δεν υπάρχουν ακόμη αναρτήσεις.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Μουσείο 3 -->
+      <div class="museum-card" id="card-amt">
+        <img src="ΕΙΚΟΝΕΣ\eisodosmouseiou.jpg" alt="Αρχαιολογικό Μουσείο Θεσσαλονίκης" class="museum-main-img">
+
+        <div class="museum-info">
+          <h2>Αρχαιολογικό Μουσείο Θεσσαλονίκης</h2>
+          <p class="city-tag">📍Μανώλη Ανδρόνικου 6, Θεσσαλονίκη </p>
+          
+          <div class="action-buttons">
+            <button class="buy-ticket-btn" onclick="openTicketModal('Αρχαιολογικό Μουσείο Θεσσαλονίκης', 10, 5)">🎫Έκδοση Εισιτηρίου</button>
+            <button class="info-btn" onclick="toggleInfo('info-amt', 'price-amt')">ℹ️Πληροφορίες</button>
+          </div>
+
+          <div id="info-amt" class="info-box hidden">
+            <p id="text-amt">
+              Το Αρχαιολογικό Μουσείο Θεσσαλονίκης παρουσιάζει τον πολιτισμό της Μακεδονίας από την προϊστορία έως την ύστερη αρχαιότητα. 
+              Φιλοξενεί σπουδαίους χρυσούς θησαυρούς, όπως τον Δερβένι Κρατήρα και τον αρχαιότερο ελληνικό πάπυρο.
+              Ώρες Λειτουργίας: 09:00 - 17:00 Καθημερινά
+            </p>
+          </div>
+
+          <p id="price-amt" class="price-info"><b>Τιμή:</b> 10€ (Κανονικό) / 5€ (Φοιτητικό)</p>
+        </div>
+
+        <div class="posts-container">
+          <h3>Αναρτήσεις Επισκεπτών:</h3>
+          <div class="photos-grid" id="grid-amt">
+            <p class="no-posts">Δεν υπάρχουν ακόμη αναρτήσεις.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Μουσείο 4 -->
+      <div class="museum-card" id="card-nam">
+        <img src="ΕΙΚΟΝΕΣ\ΕΘΝΙΚΟ ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ.jpg" alt="Εθνικό Αρχαιολογικό Μουσείο" class="museum-main-img">
+
+        <div class="museum-info">
+          <h2>Εθνικό Αρχαιολογικό Μουσείο</h2>
+          <p class="city-tag">📍28ης Οκτωβρίου (Πατησίων) 44, Αθήνα </p>
+          
+          <div class="action-buttons">
+            <button class="buy-ticket-btn" onclick="openTicketModal('Εθνικό Αρχαιολογικό Μουσείο', 20, 0)">🎟️Έκδοση Εισιτηρίου</button>
+            <button class="info-btn" onclick="toggleInfo('info-nam', 'price-nam')">ℹ️Πληροφορίες</button>
+          </div>
+
+          <div id="info-nam" class="info-box hidden">
+            <p id="text-nam">
+              Το Εθνικό Αρχαιολογικό Μουσείο είναι το μεγαλύτερο αρχαιολογικό μουσείο της χώρας με παγκόσμιας εμβέλειας συλλογές. 
+              Ξεχωρίζουν η Χρυσή Μάσκα του Αγαμέμνονα, ο Μηχανισμός των Αντικυθήρων και το χάλκινο άγαλμα του Ποσειδώνα/Δία.
+              Ώρες Λειτουργίας: Τετάρτη-Δευτέρα 08:00 – 20:00, Τρίτη 13:00 – 20:00
+            </p>
+          </div>
+
+          <p id="price-nam" class="price-info"><b>Τιμή:</b> 20€ (Κανονικό) / 0€ (Μειωμένο)</p>
+        </div>
+
+        <div class="posts-container">
+          <h3>Αναρτήσεις Επισκεπτών:</h3>
+          <div class="photos-grid" id="grid-nam">
+            <p class="no-posts">Δεν υπάρχουν ακόμη αναρτήσεις.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Μουσείο 5 -->
+      <div class="museum-card" id="card-amh">
+        <img src="ΕΙΚΟΝΕΣ\ΑΡΧΑΙΟΛΟΓΙΚΟ ΜΟΥΣΕΙΟ ΗΡΑΚΛΕΙΟΥ.jpg" alt="Αρχαιολογικό Μουσείο Ηρακλείου" class="museum-main-img">
+
+        <div class="museum-info">
+          <h2>Αρχαιολογικό Μουσείο Ηρακλείου</h2>
+          <p class="city-tag">📍Ξανθουδίδη και Χατζιδάκη 1, Ηράκλειο </p>
+          
+          <div class="action-buttons">
+            <button class="buy-ticket-btn" onclick="openTicketModal('Αρχαιολογικό Μουσείο Ηρακλείου', 20, 12)">🎫Έκδοση Εισιτηρίου</button>
+            <button class="info-btn" onclick="toggleInfo('info-amh', 'price-amh')">ℹ️Πληροφορίες</button>
+          </div>
+
+          <div id="info-amh" class="info-box hidden">
+            <p id="text-amh">
+              Το Αρχαιολογικό Μουσείο Ηρακλείου Θεωρείται το σημαντικότερο μουσείο Μινωικού Πολιτισμού στον κόσμο. 
+              Εκθέτει μοναδικά ευρήματα όπως ο Δίσκος της Φαιστού, η Θεά των Όφεων και οι τοιχογραφίες της Κνωσού.
+              Ώρες Λειτουργίας: 8:00-20:00 Καθημερινές, Τετάρτη 13:00-20:00              
+          </div>
+
+          <p id="price-amh" class="price-info"><b>Τιμή:</b> 20€ (Κανονικό) / 12€ (Φοιτητικό)</p>
+        </div>
+
+        <div class="posts-container">
+          <h3>Αναρτήσεις Επισκεπτών:</h3>
+          <div class="photos-grid" id="grid-amh">
+            <p class="no-posts">Δεν υπάρχουν ακόμη αναρτήσεις.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Μουσείο 6 -->
+      <div class="museum-card" id="card-wm">
+        <img src="ΕΙΚΟΝΕΣ\ΠΟΛΕΜΙΚΟ ΜΟΥΣΕΙΟ.jpg" alt="Πολεμικό Μουσείο" class="museum-main-img">
+
+        <div class="museum-info">
+          <h2>Πολεμικό Μουσείο</h2>
+          <p class="city-tag">📍Βασ. Σοφίας & Ριζάρη 2, Αθήνα </p>
+          
+          <div class="action-buttons">
+            <button class="buy-ticket-btn" onclick="openTicketModal('Πολεμικό Μουσείο', 6, 3)">🎫Έκδοση Εισιτηρίου</button>
+            <button class="info-btn" onclick="toggleInfo('info-wm', 'price-wm')">ℹ️Πληροφορίες</button>
+          </div>
+
+          <div id="info-wm" class="info-box hidden">
+            <p id="text-wm">
+              Το Πολεμικό μουσείο καλύπτει την πολεμική ιστορία των Ελλήνων από την αρχαιότητα μέχρι σήμερα.
+              Περιλαμβάνει όπλα, στολές, κειμήλια, καθώς και ιστορικά αεροσκάφη και κανόνια στον εξωτερικό του χώρο.
+              Ώρες Λειτουργίας: 9:00-17:00 Καθημερινά, 9:00-20:00 Σάββατο
+            </p>
+          </div>
+
+          <p id="price-wm" class="price-info"><b>Τιμή:</b> 6€ (Κανονικό) / 3€ (Φοιτητικό)</p>
+        </div>
+
+        <div class="posts-container">
+          <h3>Αναρτήσεις Επισκεπτών:</h3>
+          <div class="photos-grid" id="grid-wm">
+            <p class="no-posts">Δεν υπάρχουν ακόμη αναρτήσεις.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Μουσείο 7 -->
+      <div class="museum-card" id="card-nhm">
+        <img src="ΕΙΚΟΝΕΣ\ΕΘΝΙΚΟ ΙΣΤΟΡΙΚΟ ΜΟΥΣΕΙΟ.jpg" alt="Εθνικό Ιστορικό Μουσείο" class="museum-main-img">
+
+        <div class="museum-info">
+          <h2>Εθνικό Ιστορικό Μουσείο</h2>
+          <p class="city-tag">📍Σταδίου 13, Αθήνα </p>
+          
+          <div class="action-buttons">
+            <button class="buy-ticket-btn" onclick="openTicketModal('Εθνικό Ιστορικό Μουσείο', 10, 5)">🎟️Έκδοση Εισιτηρίου</button>
+            <button class="info-btn" onclick="toggleInfo('info-nhm', 'price-nhm')">ℹ️Πληροφορίες</button>
+          </div>
+
+          <div id="info-nhm" class="info-box hidden">
+            <p id="text-nhm">
+              Το Εθνικό Ιστορικό Μουσείο στεγάζεται στο Μέγαρο της Παλαιάς Βουλής. Εστιάζει στη νεότερη ελληνική ιστορία, από την Άλωση της Κωνσταντινούπολης 
+              έως τον 20ό αιώνα, με έμφαση στην Επανάσταση του 1821 (προσωπικά αντικείμενα Κολοκοτρώνη, κειμήλια αγωνιστών). 
+              Ώρες Λειτουργίας: Τρίτη - Παρασκευή 09.00-16.00, Σάββατο - Κυριακή 10.00-16.00              
+            </p>
+          </div>
+
+          <p id="price-nhm" class="price-info"><b>Τιμή:</b> 10€ (Κανονικό) / 5€ (Φοιτητικό)</p>
+        </div>
+
+        <div class="posts-container">
+          <h3>Αναρτήσεις Επισκεπτών:</h3>
+          <div class="photos-grid" id="grid-nhm">
+            <p class="no-posts">Δεν υπάρχουν ακόμη αναρτήσεις.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+  </main>
+
+  <button id="floating-speech-btn" onclick="speakText()">🔊 Εκφώνηση Σελίδας</button>
+
+  <div id="chat-box" class="chat-widget hidden">
+    <div class="chat-header">
+      <span>💬Chat Χρηστών</span>
+      <span class="close-chat" onclick="toggleChat()">&times;</span>
+    </div>
+    <div id="chat-messages" class="chat-body"></div>
+    <div class="chat-footer">
+      <input type="text" id="chat-input" placeholder="Γράψτε μήνυμα..." onkeypress="handleChatKeyPress(event)">
+      <button onclick="sendChatMessage()">Αποστολή!</button>
+    </div>
+  </div>
+
+  <!-- Login / Register -->
+  <div id="login-modal" class="modal">
+    <div class="modal-box">
+      <span class="close-icon" onclick="closeLoginModal()">&times;</span>
+      <h3>Σύνδεση / Εγγραφή Χρήστη</h3>
+      <form onsubmit="doLogin(event)">
+        <label>Username:</label>
+        <input type="text" id="username-input" required>
+        <label>Password (τουλάχιστον 8 χαρακτήρες):</label>
+        <input type="password" id="password-input" minlength="8" required>
+        <button type="submit" class="submit-btn">Είσοδος / Εγγραφή</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Ανάρτηση Φωτογραφίας/Βίντεο -->
+  <div id="upload-modal" class="modal">
+    <div class="modal-box">
+      <span class="close-icon" onclick="closeUploadModal()">&times;</span>
+      <h3>Ανέβασμα Αρχείου</h3>
+      <form onsubmit="doUpload(event)">
+        <label>Επιλέξτε Μουσείο:</label>
+        <select id="select-museum">
+          <option value="acropolis">Μουσείο Ακρόπολης</option>
+          <option value="byzantine">Βυζαντινό και Χριστιανικό Μουσείο</option>
+          <option value="amt">Αρχαιολογικό Μουσείο Θεσσαλονίκης</option>
+          <option value="nam">Εθνικό Αρχαιολογικό Μουσείο</option>
+          <option value="amh">Αρχαιολογικό Μουσείο Ηρακλείου</option>
+          <option value="wm">Πολεμικό Μουσείο</option>
+          <option value="nhm">Εθνικό Ιστορικό Μουσείο</option>                               
+        </select>
+
+        <label>Αρχείο (Φωτογραφίες ή Βίντεο):</label>
+        <input type="file" id="file-input" accept="image/*,video/*" required>
+
+        <label>Περιγραφή:</label>
+        <input type="text" id="alt-input" placeholder="π.χ. Βίντεο από την αίθουσα, εικόνα από μέσα..." required>
+
+        <button type="submit" class="submit-btn green-btn">Δημοσίευση</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- Αγορά Εισιτηρίου -->
+  <div id="ticket-modal" class="modal">
+    <div class="modal-box">
+      <span class="close-icon" onclick="closeTicketModal()">&times;</span>
+      <h3 id="ticket-museum-title">Αγορά Εισιτηρίου</h3>
+      
+      <form id="ticket-form" onsubmit="buyTicket(event)">
+        <label>Ημερομηνία Επίσκεψης:</label>
+        <input type="date" id="ticket-date" required>
+
+        <label>Τύπος Εισιτηρίου:</label>
+        <select id="ticket-type" onchange="calculateTotal()">
+          <option value="normal">Κανονικό</option>
+          <option value="student">Μειωμένο</option>
+        </select>
+
+        <label>Ποσότητα:</label>
+        <input type="number" id="ticket-quantity" min="1" max="10" value="1" onchange="calculateTotal()" onkeyup="calculateTotal()" required>
+
+        <div class="total-price-box">
+          <b>Συνολικό Κόστος: <span id="total-price">0</span>€</b>
+        </div>
+
+        <button type="submit" class="submit-btn orange-btn">Ολοκλήρωση Αγοράς</button>
+      </form>
+
+      <div id="ticket-receipt" class="receipt-box hidden">
+        <h4>✅ Επιτυχής Έκδοση Εισιτηρίου!</h4>
+        <p><b>Μουσείο:</b> <span id="rec-museum"></span></p>
+        <p><b>Ημερομηνία:</b> <span id="rec-date"></span></p>
+        <p><b>Εισιτήρια:</b> <span id="rec-qty"></span>x (<span id="rec-type"></span>)</p>
+        <p><b>Πληρωτέο:</b> <span id="rec-price"></span>€</p>
+        <p class="barcode">||| | |||| ||| ||||| |||</p>
+        <button onclick="closeTicketModal()" class="submit-btn">Κλείσιμο</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Τα Εισιτήριά μου -->
+  <div id="my-tickets-modal" class="modal">
+    <div class="modal-box modal-wide">
+      <span class="close-icon" onclick="closeMyTicketsModal()">&times;</span>
+      <h3>🎟️ Τα Εισιτήριά μου</h3>
+      <div id="tickets-list-container" class="tickets-list">
+        <!-- Εδώ φορτώνονται δυναμικά τα εισιτήρια -->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>🏛️ <b>Museum Enjoyer</b> © 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
